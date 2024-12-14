@@ -112,7 +112,7 @@ const WatchListComp = memo(({ link, callback }: { link: string, callback: any })
             // Remove the event listener when the component unmounts
             window.removeEventListener('resize', handleResize);
         };
-    }, [link]); // Add 'link' as a dependency if it can change
+    }, [link, fetchData]); // Add 'link' as a dependency if it can change
 
     const NiftyArray = ['NIFTY 50', 'NIFTY 100', 'NIFTY IT', 'NIFTY ENERGY', 'NIFTY AUTO', 'NIFTY BANK'];
 

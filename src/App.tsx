@@ -12,7 +12,7 @@ import { CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const App = () => {
-  const [themeMode, setThemeMode] = useState<"light" | undefined>("light");
+  const [themeMode] = useState<"light" | undefined>("light");
 
   const theme = createTheme({
     direction: "ltr",
