@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState, memo } from 'react';
+import React, { useEffect, useState, memo, useCallback } from 'react';
 import { Grid, Paper } from '@mui/material';
 import styled from "styled-components";
 import IntradayChart from "../Components/Chart/IntradayChart";
@@ -79,7 +79,7 @@ const WatchListComp = memo(({ link, callback }: { link: string, callback: any })
         return response.data;
     };
 
-    const fetchData = async (linkStr: string, indicesStr: string | null) => {
+    const fetchData = useCallback(async (linkStr: string, indicesStr: string | null) => {
         try {
             const response = await fetchNSEData(linkStr, indicesStr);
 
@@ -96,7 +96,7 @@ const WatchListComp = memo(({ link, callback }: { link: string, callback: any })
                 console.error('Error:', error.message);
             }
         }
-    };
+    }, []);
 
     useEffect(() => {
         const handleResize = () => {
