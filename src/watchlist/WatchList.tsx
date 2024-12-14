@@ -57,7 +57,7 @@ function formatDataForHighcharts(data: any) {
 const PaperComponent = memo(({ data, callback }: { data: StockData, callback: any }) => {
     const intradayChartData = formatDataForHighcharts(data);
     return <><Grid item xs={12}>
-        <Paper onClick={() => callback(<IntradayChart link={intradayChartData} />)} elevation={3} style={{ padding: '16px', fontSize: '13px', display: 'flex', justifyContent: 'space-between' }}>
+        <Paper onClick={() => callback(<IntradayChart link={JSON.stringify(intradayChartData)} />)} elevation={3} style={{ padding: '16px', fontSize: '13px', display: 'flex', justifyContent: 'space-between' }}>
             <div>{data.symbol}</div>
             <div>{data.lastPrice}</div>
         </Paper>
