@@ -73,15 +73,29 @@ const WatchListComp = memo(({ link, callback }: { link: string, callback: any })
 
         const response = await axios.get(linkStr + '/api/equity-stockIndices', {
             params: {
-                indexStr: indicesStr
-            }
+                index: indicesStr
+            },
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+                'Referer': 'https://www.nseindia.com',  // Adding Referer header
+                'Origin': 'https://www.nseindia.com',  // Adding Origin header
+            },
+            withCredentials: true
         });
         return response.data;
     };
 
     const fetchData = useCallback(async (linkStr: string, indicesStr: string | null) => {
         try {
-            const response = await fetchNSEData(linkStr, indicesStr);
+            let response = await axios.get(linkStr, {
+                headers: {
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+                    'Referer': 'https://www.nseindia.com',  // Adding Referer header
+                    'Origin': 'https://www.nseindia.com',  // Adding Origin header
+                },
+                withCredentials: true
+            });
+            const respons = await fetchNSEData(linkStr, indicesStr);
 
             // Update the component state with the fetched data
             setStockData(response.data);
@@ -102,7 +116,6 @@ const WatchListComp = memo(({ link, callback }: { link: string, callback: any })
         const handleResize = () => {
             setPageHeight(window.innerHeight);
         };
-
         // Add a resize event listener to update the page height
         window.addEventListener('resize', handleResize);
 

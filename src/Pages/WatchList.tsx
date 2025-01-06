@@ -47,7 +47,7 @@ const Watchlist = () => {
     <MainDiv style={{ marginLeft: '50px', marginRight: '50px' }}>
       <GlobalStyle />
       <ShareGrid className='renderPage'>
-        <WatchListComp link="http://localhost:8080" callback={setChartCompCallback} />
+        <WatchListComp link="https://www.nseindia.com" callback={setChartCompCallback} />
       </ShareGrid>
       <GraphVis>
         {chartComponent}
